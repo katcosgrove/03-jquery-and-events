@@ -68,7 +68,6 @@ articleView.handleMainNav = function() {
 
   $('.main-nav li').on('click', function() {
     let $active = $(this).data('content');
-    console.log('$active', $active);
     $('.tab-content').hide();
     $(`#${$active}`).fadeIn(750);
   })
@@ -79,21 +78,37 @@ articleView.handleMainNav = function() {
 
 articleView.setTeasers = function() {
   // REVIEW: Hide elements beyond the first 2 in any article body.
-
+  // console.log('Oh jeez the teasers are being set!');
   $('.article-body *:nth-of-type(n+2)').hide();
-
-  $('article a').click(function(){
-    let expand = $('p').is(':visible') ? 'Read More' : 'Read Less';
-    $(this).text(expand);
-    event.preventDefault();
-    $('p').slideToggle();
+  // console.log('Stuff past the first two elements are hidden maybe?');
+  $('article').on('click', 'a.read-on', function (e) {
+    // console.log('Ooohhh you did it now!');
+    e.preventDefault();
+    // console.log('The Default just got prevented!');
+    if($(this).text() === 'Read on...') {
+      // console.log(`The text in "this" is "${$(this).text()}" which matches "Read on..."`);
+      $(this).parent().find('*').fadeIn();
+      // console.log('FADE BREH');
+      $(this).html('Show Less')
+      // console.log('What was once "Read On" is now "Show Less"');
+    } else {
+      // console.log(`"this" is "${$(this).text()}" !== "Read on..."`);
+      $('body').animate({
+        scrollTop: ($(this).parent().offset().top)
+      }, 200);
+      // console.log('Oh god we survived...');
+      $(this).html('Read on...;');
+      // console.log('"Show Less" is now "Read More"');
+      $(this).parent().find('.article-body *:nth-of-type(n+2)').hide();
+      // console.log('Everything more than two below just got hid.');
+    }
   });
 
-  // TODO: Add an event handler to reveal all the hidden elements, when the .read-on link is clicked. You can go ahead and hide the "Read On" link once it has been clicked. Be sure to prevent the default link-click action!
+  // TODONE: Add an event handler to reveal all the hidden elements, when the .read-on link is clicked. You can go ahead and hide the "Read On" link once it has been clicked. Be sure to prevent the default link-click action!
   // Ideally, we'd attach this as just one event handler on the #articles section, and let it process (in other words... delegate) any .read-on clicks that happen within child nodes.
 };
 
-// TODO: Call all of the above functions, once we are sure the DOM is ready.
+// TODONE: Call all of the above functions, once we are sure the DOM is ready.
 $(document).ready(function() {
   articleView.populateFilters();
   articleView.handleAuthorFilter();
