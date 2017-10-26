@@ -69,11 +69,11 @@ articleView.handleMainNav = function() {
   // Clicking any .tab element should hide all the .tab-content sections, and then reveal the single .tab-content section that is associated with the clicked .tab element.
   // So: You need to dynamically build a selector string with the correct ID, based on the data available to you on the .tab element that was clicked.
 
-  $('.main-nav').on('click', function () {
-    let $whereToGo = $(this).data('content');
-    console.log('$where to go', $whereToGo);
+  $('.main-nav li').on('click', function() {
+    let $active = $(this).data('content');
+    console.log('$active', $active);
     $('.tab-content').hide();
-    $(`#${$whereToGo}`).fadeIn(750);
+    $(`#${$active}`).fadeIn(750);
   })
 
   // REVIEW: Now trigger a click on the first .tab element, to set up the page.
