@@ -1,0 +1,48 @@
+.heading-group-h1, .main-nav {
+  background-color: #ffeaaa ;
+  padding: 10px;
+}
+
+.main-nav ul {
+  margin-top: 0;
+  margin-left: 0.5vw;
+  padding: 0;
+}
+
+.main-nav ul li {
+  display: inline-block;
+  text-decoration: none;
+  padding: 10px;
+}
+
+.icon-menu {
+  display: none;
+}
+
+@media only screen and (max-width: 640px) {
+  .icon-menu {
+    display: inline;
+    position: absolute;
+    top: 1vh;
+    right: 3vw;
+    font-size: 300%;
+  }
+  .main-nav ul {
+    display: none;
+  }
+
+ .icon-menu:hover + ul {
+    display: block;
+  }
+
+ .main-nav:hover li {
+    display: block;
+    border-bottom: 1px solid gray;
+  }
+
+}
+.clearfix::after {
+  content: “”;
+  display: table;
+  clear: both;
+}
