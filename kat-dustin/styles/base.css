@@ -1,0 +1,17 @@
+:not(main-nav) {
+  font-family: ‘Roboto’, sans-serif;
+}
+
+main {
+  margin: 2vw;
+}
+
+h2 {
+  font-weight: bolder;
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+  color: gray;
+}
